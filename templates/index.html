@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Phenotype Escape Room</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<h1>Phenotype Escape Room</h1>
+	<h2>{{ stage }}</h2>
+	<p>{{ question }}</p>
+	<form method="POST" action="{{ url_for('check_answer') }}">
+		<input type="text" name="answer" placeholder="Your answer" required>
+		<input type="hidden" name="correct_answer" value="{{ correct_answer }}">
+		<input type="hidden" name="stage_index" value="{{ stage_index|default(0) }}">
+		<button type="submit">Submit</button>
+	</form>
+	{% if error %}
+		<p style="color: red;">{{ error }}</p>
+	{% endif %}
+</body>
+</html>
